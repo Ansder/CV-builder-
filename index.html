@@ -3,242 +3,252 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CV Builder Gratuit - Profesional</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<title>CV Builder Gratuit</title>
 
 <style>
-body {
-    margin:0;
-    font-family: 'Inter', sans-serif;
-    background:#f4f7fb;
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:#f4f6f9;
 }
 
 /* LANDING */
-.hero {
-    text-align:center;
-    padding:60px 20px;
+#home{
+text-align:center;
+padding:60px 20px;
+}
+#home h1{
+font-size:32px;
+color:#1e3c72;
+}
+#home p{
+color:#555;
+margin:20px 0;
+}
+.primary-btn{
+padding:14px 25px;
+background:#1e3c72;
+color:white;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
 }
 
-.hero h1 {
-    font-size:28px;
-    color:#1e3a8a;
+/* SIDEBAR */
+#sidebar{
+position:fixed;
+top:0;
+left:-260px;
+width:260px;
+height:100%;
+background:#111;
+color:white;
+padding:30px 20px;
+transition:0.3s;
+z-index:1000;
+}
+#sidebar h2{
+margin-top:0;
+}
+.template-option{
+background:#222;
+padding:12px;
+margin:10px 0;
+cursor:pointer;
+border-radius:6px;
+}
+.template-option:hover{
+background:#333;
+}
+#closeSidebar{
+margin-top:20px;
+cursor:pointer;
+color:#aaa;
 }
 
-.hero p {
-    color:#555;
-    margin:15px 0 25px;
+/* FORM */
+#builder{
+display:none;
+padding:30px 20px;
+max-width:600px;
+margin:auto;
+}
+input, textarea{
+width:100%;
+padding:10px;
+margin:10px 0;
+border-radius:5px;
+border:1px solid #ccc;
 }
 
-.btn-primary {
-    background:#2563eb;
-    color:white;
-    padding:14px 25px;
-    border:none;
-    border-radius:8px;
-    font-size:16px;
-    cursor:pointer;
+/* PREVIEW */
+#preview{
+display:none;
+padding:20px;
+background:white;
+max-width:800px;
+margin:20px auto;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
-.btn-primary:hover {
-    background:#1e4fd6;
+/* TEMPLATE 1 */
+.template-modern{
+display:flex;
+}
+.template-modern .left{
+width:30%;
+background:#1e3c72;
+color:white;
+padding:20px;
+}
+.template-modern .right{
+width:70%;
+padding:20px;
 }
 
-/* BUILDER */
-.container {
-    max-width:900px;
-    margin:auto;
-    padding:25px;
-    display:none;
+/* TEMPLATE 2 */
+.template-clean{
+padding:20px;
+}
+.template-clean h2{
+border-bottom:2px solid #000;
+padding-bottom:5px;
 }
 
-.section-title {
-    font-weight:600;
-    margin:20px 0 10px;
+.secondary-btn{
+padding:12px 20px;
+background:#28a745;
+color:white;
+border:none;
+border-radius:6px;
+margin-top:15px;
+cursor:pointer;
 }
 
-input, textarea {
-    width:100%;
-    padding:10px;
-    border-radius:6px;
-    border:1px solid #ddd;
-    margin-bottom:10px;
-}
-
-button {
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:8px;
-    background:#2563eb;
-    color:white;
-    font-size:16px;
-    cursor:pointer;
-}
-
-button:hover {
-    background:#1e4fd6;
-}
-
-/* CV PREVIEW */
-.preview {
-    margin-top:30px;
-    background:white;
-    padding:25px;
-    border-radius:8px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.05);
-    display:none;
-}
-
-.cv-header {
-    border-bottom:3px solid #2563eb;
-    padding-bottom:10px;
-    margin-bottom:15px;
-}
-
-.cv-name {
-    font-size:22px;
-    font-weight:700;
-}
-
-.cv-title {
-    color:#2563eb;
-    font-weight:600;
-}
-
-.cv-grid {
-    display:grid;
-    grid-template-columns: 1fr 2fr;
-    gap:20px;
-}
-
-.cv-left {
-    background:#f0f4ff;
-    padding:15px;
-    border-radius:8px;
-}
-
-.small {
-    font-size:14px;
-    color:#666;
-}
-
-.unlock-text {
-    font-size:13px;
-    color:#666;
-    margin-top:10px;
+.notice{
+font-size:12px;
+color:#777;
+margin-top:8px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- LANDING PAGE -->
-<div class="hero" id="homePage">
-    <h1>Creează un CV Profesional Gratuit</h1>
-    <p>Fără abonament. Fără costuri ascunse. Generează CV-ul tău în câteva minute.</p>
-    <button class="btn-primary" onclick="startBuilder()">Creează CV Gratuit</button>
+<!-- HOME -->
+<div id="home">
+<h1>CV Builder Gratuit</h1>
+<p>Creează un CV profesional în 2 minute.</p>
+<button class="primary-btn" onclick="openSidebar()">Alege Template</button>
 </div>
 
-<!-- BUILDER PAGE -->
-<div class="container" id="builderPage">
+<!-- SIDEBAR -->
+<div id="sidebar">
+<h2>Selectează Template</h2>
+<div class="template-option" onclick="selectTemplate('modern')">Modern Blue</div>
+<div class="template-option" onclick="selectTemplate('clean')">Minimal Clean</div>
+<div id="closeSidebar" onclick="closeSidebar()">Închide</div>
+</div>
 
+<!-- BUILDER -->
+<div id="builder">
 <h2>Completează Datele</h2>
-
-<div class="section-title">Date Personale</div>
-<input id="name" placeholder="Nume complet">
-<input id="title" placeholder="Titlu profesional">
-<input id="phone" placeholder="Telefon">
-<input id="email" placeholder="Email">
-<input id="city" placeholder="Oraș">
-
-<div class="section-title">Experiență</div>
-<textarea id="experience" placeholder="Descriere experiență"></textarea>
-
-<div class="section-title">Studii</div>
-<textarea id="education" placeholder="Studii"></textarea>
-
-<div class="section-title">Competențe</div>
-<textarea id="skills" placeholder="Competențe separate prin virgulă"></textarea>
-
-<button onclick="generateCV()">Generează CV</button>
-
-<div class="preview" id="previewBox">
-<div id="cvPreview"></div>
-<button id="downloadBtn" onclick="handleDownload()">Descarcă CV în PDF</button>
-<p class="unlock-text" id="unlockText" style="display:none;">
-Pentru a menține acest serviciu gratuit, este necesar un pas scurt de verificare.  
-Completează pasul din noul tab, apoi revino și apasă din nou pe buton.
-</p>
+<input type="text" id="name" placeholder="Nume complet">
+<input type="text" id="title" placeholder="Titlu profesional">
+<textarea id="about" placeholder="Descriere scurtă"></textarea>
+<input type="text" id="email" placeholder="Email">
+<input type="text" id="phone" placeholder="Telefon">
+<textarea id="experience" placeholder="Experiență profesională"></textarea>
+<button class="primary-btn" onclick="generateCV()">Generează CV</button>
 </div>
 
-</div>
+<!-- PREVIEW -->
+<div id="preview"></div>
 
 <script>
+let selectedTemplate = "";
 let unlocked = false;
+let cpaLink = "https://singingfiles.com/show.php?l=0&u=681786&id=72110";
 
-function startBuilder(){
-    document.getElementById("homePage").style.display="none";
-    document.getElementById("builderPage").style.display="block";
+function openSidebar(){
+document.getElementById("sidebar").style.left="0";
+}
+function closeSidebar(){
+document.getElementById("sidebar").style.left="-260px";
+}
+
+function selectTemplate(template){
+selectedTemplate = template;
+closeSidebar();
+document.getElementById("home").style.display="none";
+document.getElementById("builder").style.display="block";
 }
 
 function generateCV(){
-    const name = nameInput("name");
-    const title = nameInput("title");
-    const phone = nameInput("phone");
-    const email = nameInput("email");
-    const city = nameInput("city");
-    const experience = nameInput("experience");
-    const education = nameInput("education");
-    const skills = nameInput("skills");
+let name=document.getElementById("name").value;
+let title=document.getElementById("title").value;
+let about=document.getElementById("about").value;
+let email=document.getElementById("email").value;
+let phone=document.getElementById("phone").value;
+let exp=document.getElementById("experience").value;
 
-    const html = `
-    <div class="cv-header">
-        <div class="cv-name">${name}</div>
-        <div class="cv-title">${title}</div>
-    </div>
+let preview=document.getElementById("preview");
 
-    <div class="cv-grid">
-        <div class="cv-left">
-            <strong>Contact</strong>
-            <p class="small">${phone}<br>${email}<br>${city}</p>
-            <strong>Competențe</strong>
-            <p class="small">${skills}</p>
-        </div>
-
-        <div>
-            <strong>Experiență</strong>
-            <p class="small">${experience}</p>
-
-            <strong>Studii</strong>
-            <p class="small">${education}</p>
-        </div>
-    </div>
-    `;
-
-    document.getElementById("cvPreview").innerHTML = html;
-    document.getElementById("previewBox").style.display="block";
+if(selectedTemplate==="modern"){
+preview.innerHTML=`
+<div class="template-modern">
+<div class="left">
+<h2>${name}</h2>
+<p>${title}</p>
+<p>${email}</p>
+<p>${phone}</p>
+</div>
+<div class="right">
+<h3>Profil</h3>
+<p>${about}</p>
+<h3>Experiență</h3>
+<p>${exp}</p>
+</div>
+</div>
+<button class="secondary-btn" onclick="downloadCV()">Descarcă CV</button>
+<p class="notice">Descărcarea este disponibilă gratuit.</p>
+`;
 }
 
-function nameInput(id){
-    return document.getElementById(id).value;
+if(selectedTemplate==="clean"){
+preview.innerHTML=`
+<div class="template-clean">
+<h2>${name}</h2>
+<p><strong>${title}</strong></p>
+<p>${email} | ${phone}</p>
+<h3>Profil</h3>
+<p>${about}</p>
+<h3>Experiență</h3>
+<p>${exp}</p>
+</div>
+<button class="secondary-btn" onclick="downloadCV()">Descarcă CV</button>
+<p class="notice">Descărcarea este disponibilă gratuit.</p>
+`;
 }
 
-function handleDownload(){
-    if(!unlocked){
-        window.open("https://YOUR_SMART_LINK_HERE","_blank");
-        document.getElementById("unlockText").style.display="block";
-        unlocked=true;
-    } else {
-        generatePDF();
-    }
+document.getElementById("preview").style.display="block";
 }
 
-function generatePDF(){
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    doc.text(document.getElementById("cvPreview").innerText,10,10);
-    doc.save("CV.pdf");
+function downloadCV(){
+if(!unlocked){
+unlocked=true;
+window.open(cpaLink,"_blank");
+return;
+}
+
+let content=document.getElementById("preview").innerText;
+let blob=new Blob([content],{type:"text/plain"});
+let a=document.createElement("a");
+a.href=URL.createObjectURL(blob);
+a.download="CV.txt";
+a.click();
 }
 </script>
 
