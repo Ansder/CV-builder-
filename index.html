@@ -3,29 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CV Builder Gratuit România</title>
-<link rel="stylesheet" href="style.css">
+<title>CV Builder</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<header class="topbar">
-  <div class="logo">CV Builder</div>
+<header>
   <div class="menu-icon" onclick="openTemplateMenu()">☰</div>
+  <h2>CV Builder</h2>
 </header>
 
-<!-- LANDING -->
+<!-- SIDEBAR -->
+<div id="templateMenu">
+  <h3>Selectează Template</h3>
+  <button onclick="selectTemplate('modern')">Modern Blue</button>
+  <button onclick="selectTemplate('clean')">Minimal Clean</button>
+</div>
+
+<!-- HOME -->
 <section id="home">
   <h1>Creează CV-ul tău profesional</h1>
   <p>Rapid, simplu, direct de pe telefon.</p>
   <button onclick="openTemplateMenu()">Alege Template</button>
 </section>
-
-<!-- SIDEBAR -->
-<aside id="templateMenu">
-  <h2>Selectează template</h2>
-  <div onclick="selectTemplate('modern')">Modern Blue</div>
-  <div onclick="selectTemplate('clean')">Minimal Clean</div>
-</aside>
 
 <!-- BUILDER -->
 <section id="builder" class="hidden">
@@ -39,12 +39,12 @@
   <textarea id="skills" placeholder="Skill-uri"></textarea>
 
   <button onclick="generateCV()">Generează CV</button>
-</section>
 
-<!-- PREVIEW -->
-<section id="preview" class="hidden"></section>
+  <div id="preview" class="hidden"></div>
+</section>
 
 <script src="templates.js"></script>
 <script src="script.js"></script>
+
 </body>
 </html>
