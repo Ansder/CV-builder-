@@ -1,46 +1,50 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CV Builder Gratuit România</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Builder Gratuit România</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- LANDING -->
-  <section id="home">
-    <h1>Creează CV-ul tău profesional</h1>
-    <p>Rapid, simplu, direct de pe telefon.</p>
-    <button onclick="openTemplateMenu()">Alege Template</button>
-  </section>
+<header class="topbar">
+  <div class="logo">CV Builder</div>
+  <div class="menu-icon" onclick="openTemplateMenu()">☰</div>
+</header>
 
-  <!-- SIDEBAR TEMPLATE -->
-  <aside id="templateMenu">
-    <h2>Selectează un template</h2>
-    <div onclick="selectTemplate('modern')">Modern Blue</div>
-    <div onclick="selectTemplate('clean')">Minimal Clean</div>
-    <button onclick="closeTemplateMenu()">Închide</button>
-  </aside>
+<!-- LANDING -->
+<section id="home">
+  <h1>Creează CV-ul tău profesional</h1>
+  <p>Rapid, simplu, direct de pe telefon.</p>
+  <button onclick="openTemplateMenu()">Alege Template</button>
+</section>
 
-  <!-- BUILDER -->
-  <section id="builder" class="hidden">
-    <h2>Completează datele</h2>
+<!-- SIDEBAR -->
+<aside id="templateMenu">
+  <h2>Selectează template</h2>
+  <div onclick="selectTemplate('modern')">Modern Blue</div>
+  <div onclick="selectTemplate('clean')">Minimal Clean</div>
+</aside>
 
-    <input type="text" id="name" placeholder="Nume complet">
-    <input type="text" id="title" placeholder="Titlu profesional">
-    <textarea id="profile" placeholder="Profil profesional"></textarea>
-    <textarea id="experience" placeholder="Experiență"></textarea>
-    <textarea id="education" placeholder="Educație"></textarea>
-    <textarea id="skills" placeholder="Skill-uri"></textarea>
+<!-- BUILDER -->
+<section id="builder" class="hidden">
+  <h2>Completează datele</h2>
 
-    <button onclick="generateCV()">Generează CV</button>
-  </section>
+  <input id="name" placeholder="Nume complet">
+  <input id="title" placeholder="Titlu profesional">
+  <textarea id="profile" placeholder="Profil profesional"></textarea>
+  <textarea id="experience" placeholder="Experiență"></textarea>
+  <textarea id="education" placeholder="Educație"></textarea>
+  <textarea id="skills" placeholder="Skill-uri"></textarea>
 
-  <!-- PREVIEW -->
-  <section id="preview" class="hidden"></section>
+  <button onclick="generateCV()">Generează CV</button>
+</section>
 
-  <script src="templates.js"></script>
-  <script src="script.js"></script>
+<!-- PREVIEW -->
+<section id="preview" class="hidden"></section>
+
+<script src="templates.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
